@@ -202,4 +202,7 @@ class Python:
 
     def EasterEggs():
         pass 
-        
+    
+
+    def ExampleOn():
+        pass
