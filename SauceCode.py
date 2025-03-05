@@ -1,3 +1,5 @@
+#pythoninit
+
 def more(text, lines_per_page=15):
     
     lines = text.split("\n")
