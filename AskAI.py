@@ -34,7 +34,7 @@ os.environ["HF_HOME"] = HF_CACHE_DIR
 print(f"HF_HOME: {os.environ['HF_HOME']}")
 
 # ✅ Correct GGUF model path
-MODEL_PATH = "F:/lang/mistral-7b-code-16k-qlora.Q4_K_M.gguf"
+MODEL_PATH = "mistral-7b-code-16k-qlora.Q4_K_M.gguf"
 
 try:
     # ✅ Load the model
