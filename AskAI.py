@@ -77,7 +77,7 @@ try:
         response_text = response if isinstance(response, str) else response.get("text", "")
 
         # ✅ Generate explanation
-        explanation_prompt = f"### Instruction:\nExplain the following code:\n```python\n{response_text}\n```\n\n### Response:\n"
+        explanation_prompt = f"### Instruction:\nExplain the following code:\n```\n{response_text}\n```\n\n### Response:\n"
         explanation = llm(
             explanation_prompt,
             temperature=0.3,
@@ -90,7 +90,7 @@ try:
         explanation_text = explanation if isinstance(explanation, str) else explanation.get("text", "")
 
         # ✅ Generate execution trace
-        trace_prompt = f"### Instruction:\nProvide a step-by-step execution trace for the following code:\n```python\n{response_text}\n```\n\n### Response:\n"
+        trace_prompt = f"### Instruction:\nProvide a step-by-step execution trace for the following code:\n```\n{response_text}\n```\n\n### Response:\n"
         trace = llm(
             trace_prompt,
             temperature=0.3,
