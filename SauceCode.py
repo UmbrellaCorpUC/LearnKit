@@ -207,5 +207,5 @@ class Python:
     def ExampleOn():
         pass
 
-    def askai(promt,mode):
+    def AskAi(promt,mode):
         pass
