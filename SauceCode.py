@@ -208,4 +208,5 @@ class Python:
         pass
 
     def AskAi(promt,mode):
-        pass
+        from LearnKit import LearnKit as lk
+        return lk.Python.AskAi()
