@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 import webbrowser
-from cryptography.fernet import Fernet
+
 
 # Define file paths
 TEXT_FOLDER = "text"
@@ -29,7 +29,7 @@ def install_module(module_name):
 
 # Ensure `cryptography` is installed
 install_module("cryptography")
-
+from cryptography.fernet import Fernet
 def generate_secret_key():
     """Generates and saves a secret key for encryption."""
     secret_key = Fernet.generate_key()
