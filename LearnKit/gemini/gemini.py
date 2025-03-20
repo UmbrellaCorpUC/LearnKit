@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 import time
-import google.generativeai as genai
+
 from .LangSec import get_api_key  # Import the secure API key function
 
 # Function to check if a module is installed
@@ -23,6 +23,7 @@ def install_module(module_name):
 # Ensure `google-generativeai` is installed
 install_module("google-generativeai")
 
+import google.generativeai as genai
 # Set API key securely using `secure_api.py`
 genai.configure(api_key=get_api_key())
 
