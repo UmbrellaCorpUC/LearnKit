@@ -151,14 +151,14 @@ class Python:
     def MethHelp():
         pass
     
-    def AllMeth(self):
+    def AllMethods(self):
         meth=list(i+"()" for i in self.__dir__())
         meth.sort()
         return ("\n".join(meth))    
     
             
     
-    def Meth(self):
+    def Methods(self):
         
         meth=list(i+"()" for i in self.__dir__() if "__" not in i)
 
@@ -167,7 +167,7 @@ class Python:
         return ("\n".join(meth))
         
     @staticmethod
-    def Dt(*ar):
+    def DataTypes(*ar):
         if not ar:
             result = []
             for key in ["num", "seq", "map", "bool", "set", "bin"]:
@@ -195,7 +195,7 @@ class Python:
 
 
     @staticmethod
-    def Hist():
+    def History():
         
         more(history)
 
