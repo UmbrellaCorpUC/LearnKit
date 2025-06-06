@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 import webbrowser
-from cryptography.fernet import Fernet
+
 
 # Store in user home for consistency
 HOME = os.path.expanduser("~")
@@ -30,7 +30,11 @@ def install_module(module_name):
         print(f"{module_name} installed successfully!")
 
 # Ensure cryptography is installed
-install_module("cryptography")
+try:
+    from cryptography.fernet import Fernet
+except Exception:
+    
+    install_module("cryptography")
 
 def generate_secret_key():
     secret_key = Fernet.generate_key()
