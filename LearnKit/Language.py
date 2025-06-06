@@ -526,12 +526,12 @@ It was designed to emphasize code readability and simplicity.
 
     
     @classmethod
-    def ExampleOn(cls,context):
+    def ExampleOn(cls, context):
         """Return AI generated example on given context using Gemini AI"""
         from .gemini import get_gemini_response  # Import inside method to avoid import errors
-        
-        # Initialize Prompt (which manages Gemini AI requests)
-        return get_gemini_response(context+" in Python")
+    
+        prompt = context + " in Python"
+        return get_gemini_response(prompt)
 
     @classmethod
     def AskAi(cls):
