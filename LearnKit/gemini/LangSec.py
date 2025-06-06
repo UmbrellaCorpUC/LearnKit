@@ -3,7 +3,6 @@ import subprocess
 import sys
 import webbrowser
 
-
 # Store in user home for consistency
 HOME = os.path.expanduser("~")
 TEXT_FOLDER = os.path.join(HOME, ".learnkit_text")
@@ -30,11 +29,15 @@ def install_module(module_name):
         print(f"{module_name} installed successfully!")
 
 # Ensure cryptography is installed
+
 try:
     from cryptography.fernet import Fernet
-except Exception:
-    
+
+except ModuleNotFoundError:
     install_module("cryptography")
+
+finally:
+    from cryptography.fernet import Fernet
 
 def generate_secret_key():
     secret_key = Fernet.generate_key()
