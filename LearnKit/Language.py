@@ -400,16 +400,18 @@ It was designed to emphasize code readability and simplicity.
             if i + lines_per_page < len(lines):  
                 input("\n\n--Press Enter to continue to next part--\n\n")
 
+    @classmethod
     def MethHelp():
         """Returns help on various methods in this class."""
         pass #TODO: Code it damit
     
-    
-    def AllMethods(self):
+    @classmethod
+    def AllMethods(cls):
         """Returns List of All Methods"""
-        meth=list(i+"()" for i in self.__dir__())
+        meth = [i + "()" for i in dir(cls) if callable(getattr(cls, i)) ]
         meth.sort()
-        return ("\n".join(meth))    
+        return "\n".join(meth)
+  
     
     @classmethod
     def KeyWordList(cls):
@@ -430,7 +432,7 @@ It was designed to emphasize code readability and simplicity.
             return "\n".join(lines)
 
         if not args:
-        # No args: Show all groups with keywords
+        
             result = []
             for group, keywords in cls.kw_groups.items():
                 result.append(f"{group}:")
@@ -442,18 +444,18 @@ It was designed to emphasize code readability and simplicity.
         for arg in args:
             arg_lower = arg.lower()
 
-        # Try matching a keyword group
+        
             found_group = False
             for group in cls.kw_groups:
-                if arg_lower in group.lower():  # Partial match allowed
+                if arg_lower in group.lower():
                     found_group = True
                     output.append(f"{group}:")
                     for kw in cls.kw_groups[group]:
                         short_def = cls.kw_descriptions.get(kw, {}).get("Definition", "No description.")
                         output.append(f"- {kw}: {short_def}")
-                    output.append("")  # Spacer line
+                    output.append("")  
 
-        # If not group, try keyword match
+        
             if not found_group:
                 if arg in cls.kw_descriptions:
                     output.append(format_info(arg, cls.kw_descriptions[arg]))
@@ -461,15 +463,15 @@ It was designed to emphasize code readability and simplicity.
                     output.append(f"{arg} not found. Try a keyword or group like 'Control Flow'.")
 
         return "\n".join(output)
+    
                 
-    def Methods(self):
-        """Returns List of methods excluding Dunder method"""
-        
-        meth=list(i+"()" for i in self.__dir__() if "__" not in i)
-
+    @classmethod
+    def Methods(cls):
+        """Returns List of Lk Methods"""
+        meth = [i + "()" for i in dir(cls) if callable(getattr(cls, i)) and not i.startswith("__")]
         meth.sort()
-        
-        return ("\n".join(meth))
+        return "\n".join(meth)
+
         
     @classmethod
     def DataTypes(self,*ar):
@@ -499,7 +501,7 @@ It was designed to emphasize code readability and simplicity.
                 help(i)
 
             except Exception:
-                print(f"Help couldnt find anythin on {context}, Try AskAi()")
+                print(f"Help couldnt find anything on {context}, Try AskAi() or something else.")
         
     
     @classmethod
@@ -517,10 +519,12 @@ It was designed to emphasize code readability and simplicity.
         cls.more(cls.history)
 
     
-
+    @classmethod
     def EasterEggs():
         """Returns Some famous Easter eggs in python."""
         pass #TODO: Code it damit
+
+    
     @classmethod
     def ExampleOn(cls,context):
         """Return AI generated example on given context using Gemini AI"""
@@ -529,8 +533,8 @@ It was designed to emphasize code readability and simplicity.
         # Initialize Prompt (which manages Gemini AI requests)
         return get_gemini_response(context+" in Python")
 
-    @staticmethod
-    def AskAi():
+    @classmethod
+    def AskAi(cls):
         """When all else fails, AskAi returns Help from AI"""
         from .gemini import Prompt 
   
