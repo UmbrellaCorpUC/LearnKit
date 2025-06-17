@@ -1,4 +1,9 @@
 #pythoninit
+
+class InternetNotFoundError(Exception):
+    pass
+
+
 class Python:
 
     def __init__(self):
@@ -19,7 +24,7 @@ class Python:
         return f"<Class langueage:Python at {id(self)}>"
 #=====================================================================#
 
-    kw_descriptions = {#keywords with their info.
+    __kw_descriptions = {#keywords with their info.
     "if": {
         "Definition": "Used to execute a block of code only if a specified condition is true.",
         "Key Use": "Conditional branching.",
@@ -238,7 +243,7 @@ class Python:
     }
     }
 
-    kw_groups = {#keyword acording to their uses.
+    __kw_groups = {#keyword acording to their uses.
     "Control Flow": [
         "if", "elif", "else", "while", "for", "break", "continue", "pass"
     ],
@@ -263,17 +268,17 @@ class Python:
     }
 
     #lists for DataTypes
-    Num = ['Numeric', 'Num', 'num','numeric']
+    __Num = ['Numeric', 'Num', 'num','numeric']
 
-    Seq=["Sequence","sequence","Seq","seq"]
+    __Seq=["Sequence","sequence","Seq","seq"]
 
-    Map=["Map","map"]
-    Bool=["bool","Bool","Boolean","boolean"]
-    Set=["set","Set"]
+    __Map=["Map","map"]
+    __Bool=["bool","Bool","Boolean","boolean"]
+    __Set=["set","Set"]
 
-    Bin=["Bin","bin","Byte","byte","Bytes","bytes"]
+    __Bin=["Bin","bin","Byte","byte","Bytes","bytes"]
 
-    Numv = [
+    __Numv = [
     "\n>> NUMERIC DATATYPES :\n",
     f">> Integer ({int}): A data type that represents whole numbers, including positive, negative, and zero.",
     f">> Example: 4, -5, 100.",
@@ -288,7 +293,7 @@ class Python:
     f">> Commonly used in scientific and engineering computations.\n\n"
     ]
 
-    Seqv = [
+    __Seqv = [
     "\n>> SEQUENCE DATATYPES :\n",
     f">> String ({str}): A sequence of characters enclosed within single, double, or triple quotes.",
     f">> Example: 'hello', \"Python\".",
@@ -303,7 +308,7 @@ class Python:
     f">> Immutable: Once created, elements cannot be changed.\n\n"
     ]
 
-    Mapv = [
+    __Mapv = [
     "\n>> MAPPING DATATYPE :\n",
     f">> Dictionary ({dict}): A collection of key-value pairs where each key is unique and maps to a specific value.",
     f">> Example: {{'name': 'Alice', 'age': 25}}.",
@@ -311,7 +316,7 @@ class Python:
     f">> Keys must be immutable types such as strings, numbers, or tuples.\n\n"
     ]
 
-    Boolv = [
+    __Boolv = [
     "\n>> BOOLEAN DATATYPE :\n",
     f">> Boolean ({bool}): A data type that represents two values: True and False.",
     f">> Example: True, False.",
@@ -319,7 +324,7 @@ class Python:
     f">> Example: (5 > 3) → True, (5 < 3) → False.\n\n"
     ]
 
-    Setv = [
+    __Setv = [
     "\n>> SET DATATYPES :\n",
     f">> Set ({set}): A collection of unordered, unique elements.",
     f">> Example: {{1, 2, 3, 'apple'}}.",
@@ -331,7 +336,7 @@ class Python:
     f">> Immutable: Once created, elements cannot be added or removed.\n\n"
     ]
 
-    Binv = [
+    __Binv = [
     "\n>> BINARY DATATYPES :\n",
     f">> Bytes ({bytes}): A sequence of numbers where each value represents a byte (ranging from 0 to 255).",
     f">> Example: b'hello'.",
@@ -347,21 +352,21 @@ class Python:
     ]
     
     #Dictionary for DataTypes
-    dd = dict.fromkeys(Num, Numv)
+    __dd = dict.fromkeys(__Num, __Numv)
 
-    dd.update(dict.fromkeys(Seq, Seqv))
+    __dd.update(dict.fromkeys(__Seq, __Seqv))
 
-    dd.update(dict.fromkeys(Map,Mapv))
+    __dd.update(dict.fromkeys(__Map,__Mapv))
 
-    dd.update(dict.fromkeys(Bool,Boolv))
+    __dd.update(dict.fromkeys(__Bool,__Boolv))
 
-    dd.update(dict.fromkeys(Set,Setv))
+    __dd.update(dict.fromkeys(__Set,__Setv))
 
-    dd.update(dict.fromkeys(Bin,Binv))
+    __dd.update(dict.fromkeys(__Bin,__Binv))
 
 
     #history of python
-    history = """
+    __history = """
 ===========================================
               Python History
 ===========================================
@@ -420,7 +425,6 @@ It was designed to emphasize code readability and simplicity.
     
     
     @classmethod
-    
     def Keywords(cls, *args):
         """Returns keyword info or group-based keyword list."""
 
@@ -434,7 +438,7 @@ It was designed to emphasize code readability and simplicity.
         if not args:
         
             result = []
-            for group, keywords in cls.kw_groups.items():
+            for group, keywords in cls.__kw_groups.items():
                 result.append(f"{group}:")
                 result.append(", ".join(keywords))
                 result.append("")
@@ -446,19 +450,19 @@ It was designed to emphasize code readability and simplicity.
 
         
             found_group = False
-            for group in cls.kw_groups:
+            for group in cls.__kw_groups:
                 if arg_lower in group.lower():
                     found_group = True
                     output.append(f"{group}:")
-                    for kw in cls.kw_groups[group]:
-                        short_def = cls.kw_descriptions.get(kw, {}).get("Definition", "No description.")
+                    for kw in cls.__kw_groups[group]:
+                        short_def = cls.__kw_descriptions.get(kw, {}).get("Definition", "No description.")
                         output.append(f"- {kw}: {short_def}")
                     output.append("")  
 
         
             if not found_group:
-                if arg in cls.kw_descriptions:
-                    output.append(format_info(arg, cls.kw_descriptions[arg]))
+                if arg in cls.__kw_descriptions:
+                    output.append(format_info(arg, cls.__kw_descriptions[arg]))
                 else:
                     output.append(f"{arg} not found. Try a keyword or group like 'Control Flow'.")
 
@@ -479,16 +483,16 @@ It was designed to emphasize code readability and simplicity.
         if not ar:
             result = []
             for key in ["num", "seq", "map", "bool", "set", "bin"]:
-                if key in self.dd:
-                    result.extend(self.dd[key])
+                if key in self.__dd:
+                    result.extend(self.__dd[key])
             return "\n".join(result)
 
         result = []
         for i in ar:
-            if i not in self.dd:
+            if i not in self.__dd:
                 result.append(f"{i} not found. Perhaps you misspelled it?\n")
             else:
-                result.extend(self.dd[i])
+                result.extend(self.__dd[i])
 
         return "\n".join(result)
 
@@ -496,12 +500,16 @@ It was designed to emphasize code readability and simplicity.
     def Help(cls,*context):
         """Returns Help on Context(s) on anything."""
         for i in context:
-            try:
+            if i=="InternetError":
+                print("Check your internet connection.\nAI methods require internet.")
+                exit(1)
+            else:
+                try:
             
-                help(i)
+                    help(i)
 
-            except Exception:
-                print(f"Help couldnt find anything on {context}, Try AskAi() or something else.")
+                except Exception:
+                    print(f"Help couldnt find anything on {context}, Try AskAi() or something else.")
         
     
     @classmethod
@@ -516,7 +524,7 @@ It was designed to emphasize code readability and simplicity.
     def History(cls):
         """Prints Python History"""
         
-        cls.more(cls.history)
+        cls.more(cls.__history)
 
     
     @classmethod
@@ -528,6 +536,18 @@ It was designed to emphasize code readability and simplicity.
     @classmethod
     def ExampleOn(cls, context):
         """Return AI generated example on given context using Gemini AI"""
+        import socket
+        try:
+            try:
+                socket.create_connection(("8.8.8.8", 53), timeout=3)
+            except Exception:
+                raise InternetNotFoundError
+            
+        except InternetNotFoundError:
+            print("SoSInternetNotFound- Try Help(\"InternetError\")")
+            exit(1)
+             
+    
         from .gemini import get_gemini_response  # Import inside method to avoid import errors
     
         prompt = context + " in Python"
@@ -536,6 +556,16 @@ It was designed to emphasize code readability and simplicity.
     @classmethod
     def AskAi(cls):
         """When all else fails, AskAi returns Help from AI"""
+        import socket
+        try:
+            try:
+                socket.create_connection(("8.8.8.8", 53), timeout=3)
+            except Exception:
+                raise InternetNotFoundError
+            
+        except InternetNotFoundError:
+            print("SoSInternetNotFound- Try Help(\"InternetError\")")
+            exit(1)
         from .gemini import Prompt 
   
         return Prompt()
