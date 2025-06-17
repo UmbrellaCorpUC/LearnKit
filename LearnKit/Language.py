@@ -21,7 +21,7 @@ class Python:
     
     def __str__(self):
         """Returns Language class name"""
-        return f"<Class langueage:Python at {id(self)}>"
+        return f"<class language:Python at {id(self)}>"
 #=====================================================================#
 
     __kw_descriptions = {#keywords with their info.
