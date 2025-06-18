@@ -1,9 +1,9 @@
-#pythoninit
+
 
 class InternetNotFoundError(Exception):
     pass
 
-
+#Pythoninit
 class Python:
 
     def __init__(self):
@@ -21,7 +21,7 @@ class Python:
     
     def __str__(self):
         """Returns Language class name"""
-        return f"<class language:Python at {id(self)}>"
+        return f"<Class langueage:Python at {id(self)}>"
 #=====================================================================#
 
     __kw_descriptions = {#keywords with their info.
@@ -569,3 +569,14 @@ It was designed to emphasize code readability and simplicity.
         from .gemini import Prompt 
   
         return Prompt()
+
+
+#Javainit
+class Java(Python):
+    pass
+
+
+#Cinit
+class C(Java):
+    pass
+
